@@ -7,6 +7,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import ca.georgiancollege.ice5.databinding.ActivityMainBinding
+import android.util.Log
+
 
 class MainActivity : AppCompatActivity()
 {
@@ -32,6 +34,13 @@ class MainActivity : AppCompatActivity()
         initializeButtonLists(binding)
         configureNumberInput()
         configureModifierButtons()
+
+        val person = Person("Tom", 100f)
+        Log.i("onCreate", person.toString())
+
+        person.sayHello()
+
+
     }
 
     /**
