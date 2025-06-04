@@ -40,6 +40,8 @@ class MainActivity : AppCompatActivity()
 
         person.sayHello()
 
+        val calculator = Calculator(binding)
+
 
     }
 
