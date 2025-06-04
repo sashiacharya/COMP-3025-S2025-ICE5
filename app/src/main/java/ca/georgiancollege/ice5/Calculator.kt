@@ -111,3 +111,13 @@ class Calculator(private var binding: ActivityMainBinding) {
 
                 }
 
+                binding.plusMinusButton -> {
+                val currentText = binding.resultEditText.text.toString()
+                if (currentText != "0") {
+                    if (currentText.startsWith("-")) {
+                        binding.resultEditText.setText(currentText.removePrefix("-"))
+                    } else {
+                        binding.resultEditText.setText("-$currentText")
+                    }
+
+
