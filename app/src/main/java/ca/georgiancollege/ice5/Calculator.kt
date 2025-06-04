@@ -88,7 +88,26 @@ class Calculator(private var binding: ActivityMainBinding) {
             }
         }
     }
+    private fun configureModifierButtons() {
+        modifierButtons.forEach { button ->
+            button.setOnClickListener {
+                when (button) {
+                    binding.clearButton -> {
+                        binding.resultEditText.setText("0")
+                        currentOperand = null
+                        currentOperator = null
+                        operationInProgress = false
+                    }
 
+                    binding.deleteButton -> {
+                        val currentText = binding.resultEditText.text.toString()
+                        val newText = if (currentText.isNotEmpty()) currentText.dropLast(1) else ""
+                        if (newText.isEmpty() || newText == "-") {
+                            binding.resultEditText.setText("0")
+                        } else {
+                            binding.resultEditText.setText(newText)
+                        }
+                    }
 
-}
+                }
 
