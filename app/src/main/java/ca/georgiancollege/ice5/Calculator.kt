@@ -15,6 +15,9 @@ class Calculator(private var binding: ActivityMainBinding) {
 
     init {
         initializeButtonLists(binding)
+        configureNumberInput()
+        configureOperatorButtons()
+        configureModifierButtons()
 
     }
 
@@ -61,4 +64,31 @@ class Calculator(private var binding: ActivityMainBinding) {
         }
     }
 
+    private fun configureOperatorButtons() {
+        operatorButtons.forEach { button ->
+            button.setOnClickListener {
+                val inputValue = binding.resultEditText.text.toString()
+
+                when (button) {
+                    binding.plusButton, binding.minusButton, binding.multiplyButton, binding.divideButton -> {
+                        // Only allow operator if not already chosen
+                        if (currentOperator == null) {
+                            currentOperand = inputValue
+                            currentOperator = when (button) {
+                                binding.plusButton -> "add"
+                                binding.minusButton -> "subtract"
+                                binding.multiplyButton -> "multiply"
+                                binding.divideButton -> "divide"
+                                else -> null
+                            }
+                            binding.resultEditText.setText("0")
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+
 }
+
